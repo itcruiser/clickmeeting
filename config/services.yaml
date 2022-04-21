@@ -22,3 +22,24 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\DataLoader\DataLoaderInterface:
+        class: App\Service\DataLoader\LiipImagineDataLoader
+        arguments:
+            $dataLoader: '@liip_imagine.binary.loader.local_sources'
+
+    App\Service\FilterManager\FilterManagerInterface:
+        class: App\Service\FilterManager\FilterManager
+        arguments:
+            - !tagged_iterator app.filter_executor
+
+    App\Service\FilterExecutor\LiipImagineFilterExecutor:
+        tags: ['app.filter_executor']
+
+    App\Service\CacheResolver\CacheResolverInterface:
+        class: App\Service\CacheResolver\LiipImagineCacheResolver
+        arguments:
+            $cacheResolver: '@liip_imagine.cache.resolver.local_thumbnails'
+
+    App\Service\ThumbnailGenerator:
+        class: App\Service\ThumbnailGeneratorImpl

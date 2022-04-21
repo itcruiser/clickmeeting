@@ -1,0 +1,24 @@
+# Documentation on how to configure the bundle can be found at: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"
+    filter_sets:
+        simple_thumb:
+            quality: 90
+            filters:
+                relative_resize:
+                    widen: 150
+        premium_thumb:
+            quality: 90
+            filters:
+                relative_resize:
+                    widen: 300
+    loaders:
+        local_sources:
+            flysystem:
+                filesystem_service: oneup_flysystem.local_sources_filesystem
+    resolvers:
+        local_thumbnails:
+            flysystem:
+                filesystem_service: oneup_flysystem.local_thumbnails_filesystem
+                root_url: "http://images.example.com" #Tutaj oczywiście przykłądowa domena

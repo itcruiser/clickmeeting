@@ -1,0 +1,19 @@
+# Read the documentation: https://github.com/1up-lab/OneupFlysystemBundle
+oneup_flysystem:
+    adapters:
+        local_sources:
+            local:
+                location: '%kernel.project_dir%/var/sources'
+        local_thumbnails:
+            local:
+                location: '%kernel.project_dir%/var/thumbnails'
+    filesystems:
+        local_thumbnails:
+            adapter: local_thumbnails
+            alias: League\Flysystem\Filesystem
+        local_sources:
+            adapter: local_sources
+            alias: League\Flysystem\Filesystem
+
+
+#dla zapisywania do S3 możemy użyć konfiguracji pod tym linkiem https://github.com/1up-lab/OneupFlysystemBundle/blob/main/doc/adapter_awss3.md
